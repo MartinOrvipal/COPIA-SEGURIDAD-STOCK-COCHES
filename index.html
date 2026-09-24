@@ -97,6 +97,8 @@
     .bg-santander    { background-color: #46bdc6; }
     .bg-pamplona    { background-color: #3c78d8; }
     .bg-lisboa    { background-color: #a64d79; }
+    .bg-malaga    { background-color: #e65775; }
+    .bg-psa-bcn     { background-color: #cc0000; }
 
     #camion-container {
       position: absolute;
@@ -253,6 +255,7 @@
             case 'santander':  bgClass = 'bg-santander'; break;
             case 'lisboa':  bgClass = 'bg-lisboa'; break;  
             case 'pamplona':  bgClass = 'bg-pamplona'; break; 
+            case 'malaga':  bgClass = 'bg-malaga'; break;
           }
 
           const marca = fila.MARCA;
@@ -262,17 +265,24 @@
           const lon = parseFloat(fila.LONGITUD.replace(",", "."));
 
           if (!isNaN(lat) && !isNaN(lon)) {
-            let claseZaragoza = ciudad === 'zaragoza' ? ' sin-logo' : '';
-            let html = `
-              <div class='popup-content ${bgClass}'>
-                <div class='marca-logo${claseZaragoza}'>
-                  <div class="info-marca">`;
+          const sinLogo = ciudad === 'zaragoza' || marca?.toLowerCase() === 'chinos';
 
-            if (ciudad !== 'zaragoza') {
-              html += `<img src="${logo}" alt="logo">`;
-            } else {
-              html += `<img src="#" alt="" style="opacity:0; width:1px; height:20px; margin-right:0;">`;
-            }
+          if (marca?.toLowerCase() === 'psa bcn') {
+            bgClass = 'bg-psa-bcn';
+          }
+
+          let claseSinLogo = sinLogo ? ' sin-logo' : '';
+
+          let html = `
+            <div class='popup-content ${bgClass}'>
+              <div class='marca-logo${claseSinLogo}'>
+                <div class="info-marca">`;
+
+          if (!sinLogo) {
+            html += `<img src="${logo}" alt="logo">`;
+          } else {
+            html += `<img src="#" alt="" style="opacity:0; width:1px; height:20px; margin-right:0;">`;
+          }
 
             html += `<strong>${marca}</strong></div>
                   <div class="stock">${stock}</div>
