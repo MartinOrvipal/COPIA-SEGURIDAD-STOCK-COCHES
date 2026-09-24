@@ -12,6 +12,7 @@ Este archivo sirve como **registro visual y cronológico** de todas las copias d
 | Fecha | Motivo | Detalles |
 |------|-------|----------|
 | **23/01/2026** | Cambio de código | Nueva etiqueta añadida: **VW Pamplona** |
+| **24/09/2026** | Cambio de código | Texto Columna D agrandado: **466V** |
 
 ---
 
